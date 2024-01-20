@@ -1,5 +1,23 @@
- ZZJ ISP-SIMM v1.0
-by zigzagjoe (https://github.com/zigzagjoe/)
+  _____  _____ _____        _____ _____ __  __ __  __ 
+ |_   _|/ ____|  __ \      / ____|_   _|  \/  |  \/  |
+   | | | (___ | |__) |____| (___   | | | \  / | \  / |
+   | |  \___ \|  ___/______\___ \  | | | |\/| | |\/| |
+  _| |_ ____) | |          ____) |_| |_| |  | | |  | |
+ |_____|_____/|_|         |_____/|_____|_|  |_|_|  |_|
+                                                                                                                                                      
+     ZZJ ISP-SIMM v1.0
+  by zigzagjoe (https://github.com/ZigZagJoe/ISP-SIMM_public)
+
+-----------------------------------------------------
+| Description                                       |
+-----------------------------------------------------
+
+This is a universal ROM SIMM for Apple Macintosh II and Quadra series computers, 
+with a built-in USB programmer. It is intended to support rapid development 
+of bare-metal code on Macintosh platforms.
+
+This module has 16MB of total storage, exposed to the host 8MB at a time. 
+Which half ("bank") the host 'sees' from is controlled by a switch on the module.
 
 -----------------------------------------------------
 | Basic operation                                   |
@@ -128,7 +146,29 @@ bootloader   reboot to pico uf2 bootloader
  
 showlog      prints recent log entries
   requires debug logging to usb to be enabled!!
- 
+  
+-----------------------------------------------------
+| Firmware updates                                  |
+-----------------------------------------------------
+
+Firmware is posted on github, at the link at the top of this document.
+Please report issues there.
+
+--- How to update ---
+
+1. Shut down the mac and disconnect module from computer. 
+2. Hold the "BOOTSEL" switch on the back of the module
+3. Connect the module to the computer.
+4. You should see a RPI-RP2 drive appear on the computer. You may release the BOOTSEL switch.
+5. Drag the .uf2 file obtained from github to this drive.
+6. The RPI-RP2 drive will disappear, and the ISP-SIMM drive should reappear.
+     Your computer may complain about unclean ejection of drive. This can be ignored.
+7. Verify new firmware version by checking INFO_UF2.TXT
+
+--- Alternate method to enter bootloader ---
+
+Issue the bootloader command from the serial terminal, then continue from step 4.
+
 -----------------------------------------------------
 | Troubleshooting                                   |
 -----------------------------------------------------
@@ -136,10 +176,11 @@ showlog      prints recent log entries
 --- Checking the log ---
 
 Open ISP-SIMM.log in text editor of choice. This contains essential troubleshooting information.
-NOTE: This log file DOES NOT UPDATE. This is an unavoidable limitation of how I present storage to the host.
 
-To update this log: issue a "refresh" command via serial or write an image to the drive.
-Use the serial logging for realtime troubleshooting, or disconnect and reconnect USB (while host Macintosh is on) to update the file.
+NOTE: This log file DOES NOT UPDATE. This is an unavoidable limitation of how I present storage to the host.
+To update this log: issue a "refresh" command via serial, write an image to the drive, or unplug/replug USB.
+
+I recommend that you use serial log for realtime troubleshooting.
 
 Note: More recent entries will begin overwriting old ones at the top of the log file.
 
@@ -186,19 +227,27 @@ Feel free to reach out to me on github or 68kmla with log files if you continue 
 | RESET_OUT header                                  |
 -----------------------------------------------------
 
-OPTIONAL. This allows the SIMM to automatically reset the Mac and hold it in reset while SIMM read/write operations are in progress.
+OPTIONAL. This allows the SIMM to automatically reset the Mac and hold it in reset 
+while SIMM read/write operations are in progress. Open collector output, 5V logic safe. 
 
-Open collector output, 5V logic safe. Connect to the system RESET input (such as found on the reset button) or to an appropriate header (ie. Pin A12 of SE/30 PDS).
+Connect to the a RESET pin (such as found on the reset button) or on a header (ie. Pin A12 of SE/30 PDS).
 
-Make very certain you are connecting this correctly or you WILL cause damage to either the SIMM or your macintosh.
+Make very certain you are connecting this correctly or you WILL cause damage 
+to either the SIMM or your macintosh.
 
-You can test by plugging the wire into the appropriate location on your logic board, and then connecting it to ground using a 100-1000 ohm resistor. Your system should reset and not boot until disconnected.
+You can test by plugging the wire into the appropriate location on your logic board, 
+and then connecting it to ground using a 100 - 1000 ohm resistor. 
+
+Your system should reset and not boot until disconnected.
 
 -----------------------------------------------------
 | Serial (UART) header                              |
 -----------------------------------------------------
 
-The ISP-SIMM has a hardware UART exposed on the serial header. All UART data received is forwarded to USB serial, and all input to the USB serial is sent to the UART connected device. See above for configuration notes.
+The ISP-SIMM has a hardware UART exposed on the serial header. 
+
+All UART data received is forwarded to USB serial, and all input to the USB serial 
+is sent to the UART connected device. See above for configuration notes.
 
 This is a SM04B-SURS type connector. Pin 1 is designated by a small triangle.
 
