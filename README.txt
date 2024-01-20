@@ -210,9 +210,10 @@ BANK_A.UF2 OR BANK_B.UF2 are 0 bytes in size
     A write error occurred the last time you were flashing this bank. 
     Please try again, and consult the log if issues continue.
  
- 
+BANK_CUR.UF2 is always 16MB in size
+	Due to limitations in how the USB mass storage works, it is not possible to read out anything but the full bank.
+	
 Feel free to reach out to me on github or 68kmla with log files if you continue to have issues.
-
 
  ###################################################################################
 #####################################################################################
