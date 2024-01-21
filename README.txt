@@ -109,6 +109,7 @@ Dim Green               Power on, idle
 Dim Red                 in Pico Bootloader mode (ROM is disabled)
 Bright Red              Write failure occurred (invalid file or write was aborted)
 Bright Green blinking   Read in progress
+Bright Red blinking		Write in progress, errors have occurred
 Green + Red blinking    Write in progress
 
 Bright green solid / Green and Red solid / LEDs off: 
@@ -128,22 +129,27 @@ All other input will be forwarded to the UART header onboard.
 
 echo 0|1     disable/enable debug logging to USB. 
   Required for running other protocols over USB-Serial
+  This setting will be saved and used at next power-on of SIMM.
+
+baud n       set serial uart baud rate to n
+  Immediately change the uart's baud rate (this does no change anthing on the USB serial port)
+  This setting will be saved and used at next power-on of SIMM.
 
 bank a|b|c   set bank a|b or (c)lear to use switch's setting 
   Use to specify which bank is written when dragging a UF2 file to the drive, or what BANK_CUR.UF2 reads back.
   This will override the physical switch until the module is reset or "bank c" is issued
 
-baud n       set serial uart baud rate to n
-  Immediately change the uart's baud rate (this does no change anthing on the USB serial port)
-  This setting will be saved and used at next power-on of module
- 
 refresh      refresh drive contents to OS
   Causes the USB device to briefly eject and re-insert its media. 
   This forces most OS to update the contents of files and is performed automatically on writes.
 
 bootloader   reboot to pico uf2 bootloader
   Immediately reboots to the pico's UF2 bootloader mode
- 
+  
+resetmac     resets macintosh (requires RESET_OUT connection)
+  Immediately resets the macintosh using the RESET_OUT connection.
+  Ignored while ROM flashing or read operations are in progress.
+   
 showlog      prints recent log entries
   requires debug logging to usb to be enabled!!
   
