@@ -1,0 +1,1 @@
+1.0.0.80: Upon a write failure, discard any additional writes as a full rewrite of the image is required to retry. No sense wearing the flash.

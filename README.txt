@@ -173,7 +173,7 @@ Please report issues there.
 
 --- Alternate method to enter bootloader ---
 
-Issue the bootloader command from the serial terminal, then continue from step 4.
+Issue the bootloader command from the USB serial terminal, then continue from step 4.
 
 -----------------------------------------------------
 | Troubleshooting                                   |
@@ -184,11 +184,11 @@ Issue the bootloader command from the serial terminal, then continue from step 4
 Open ISP-SIMM.log in text editor of choice. This contains essential troubleshooting information.
 
 NOTE: This log file DOES NOT UPDATE. This is an unavoidable limitation of how I present storage to the host.
-To update this log: issue a "refresh" command via serial, write an image to the drive, or unplug/replug USB.
-
-I recommend that you use serial log for realtime troubleshooting.
+To update this log: issue a "refresh" command via USB serial, write an image to the drive, or unplug/replug USB.
 
 Note: More recent entries will begin overwriting old ones at the top of the log file.
+
+I recommend that you use USB serial logging for realtime troubleshooting.
 
 ---------
 
@@ -292,7 +292,7 @@ _____________________________________________________________
               \__________________________/            /
                     ______    ______                 (    
              |     /      \  /      \                (    
-           -----  |  +5V   ||  GND   |  ------        \ 
+           -----  |  +5V   ||   GND  |  ------        \ 
              |     \______/  \______/                  \
                                                         \____
                   P    W    R   I   N                    
