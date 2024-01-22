@@ -109,7 +109,7 @@ Dim Green               Power on, idle
 Dim Red                 in Pico Bootloader mode (ROM is disabled)
 Bright Red              Write failure occurred (invalid file or write was aborted)
 Bright Green blinking   Read in progress
-Bright Red blinking		Write in progress, errors have occurred
+Bright Red blinking     Write in progress, errors have occurred
 Green + Red blinking    Write in progress
 
 Bright green solid / Green and Red solid / LEDs off: 
