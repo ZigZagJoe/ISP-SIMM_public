@@ -142,10 +142,21 @@ if (! $Outdir -and $uiMode) {
 } 
 	
 if (! $Outdir) { # cancel
-		 Write-host "Please provide output directory with -Outdir"
+		 Write-host "Please provide output directory with -Outdir or use -Outdir auto to search for $autoSelectDevice"
 	exit 1
 }
 
+if ($Outdir -eq "auto") {
+	write-host "Searching for $($autoSelectDevice) drive"
+    $dr = gwmi Win32_LogicalDisk | ? {$_.VolumeName -eq $autoSelectDevice} | Select -ExpandProperty DeviceID -First 1
+	if ($dr) {
+		
+        $Outdir = $dr + '\'
+	} else {
+		write-host "Unable to locate $($autoSelectDevice): upload failed."
+		exit 1
+	}
+}
 
 Log-Line "Output directory: $Outdir`r`n"
 
