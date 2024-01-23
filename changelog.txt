@@ -1,1 +1,3 @@
 1.0.0.80: Upon a write failure, discard any additional writes as a full rewrite of the image is required to retry. No sense wearing the flash.
+1.0.0.100: add "auto" argument to BIN2UF2.PS1 to automatically search for the SIMM and write to it.
+1.0.0.101: address empty commands properly
