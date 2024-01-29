@@ -2,3 +2,4 @@
 1.0.0.100: add "auto" argument to BIN2UF2.PS1 to automatically search for the SIMM and write to it.
 1.0.0.103: address empty commands properly and fix backspace handling
 1.0.0.105: fix flash sanity check function
+1.0.0.113: add LED activity indication for USB->Serial

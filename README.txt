@@ -111,6 +111,7 @@ Bright Red              Write failure occurred (invalid file or write was aborte
 Bright Green blinking   Read in progress
 Bright Red blinking     Write in progress, errors have occurred
 Green + Red blinking    Write in progress
+Red flickering          USB->Serial TX or RX activity
 
 Bright green solid / Green and Red solid / LEDs off: 
   host has stopped writing/reading, a time out will occur shortly.
@@ -151,8 +152,10 @@ resetmac     resets macintosh (requires RESET_OUT connection)
   Ignored while ROM flashing or read operations are in progress.
    
 showlog      prints recent log entries
-  requires debug logging to usb to be enabled!!
+  prints the log up until the most recent wrap point
   
+Note: Commands with arguments will return the current status if run with no arguments.
+
 -----------------------------------------------------
 | Firmware updates                                  |
 -----------------------------------------------------
@@ -193,20 +196,21 @@ I recommend that you use USB serial logging for realtime troubleshooting.
 ---------
 
 No boot
-    Verify the ROM is correctly seated. 
-    If your ROM socket is old or dirty, the module may need some pressure to correctly make contact. 
-    Make sure you're writing a ROM file that is compatible with your Macintosh
     Verify the LED is DIM green after write completes (success)
+	Verify the ROM is correctly seated. 
+    If your ROM socket is unreliable or dirty, the module may need some pressure to correctly make contact.
+    Make sure you're writing a ROM file that is compatible with your Macintosh
+    ISP-SIMM expects ROM files in little endian byte order.
     Check the log for more information.
 	
 USB does not connect
-	Try a different cable or use the cable supplied.
+	Try a different cable / use the cable supplied.
 	Reflash firmware to SIMM
 
 Write errors 
     Try again.
-    Try connecting USB directly to computer
-    Try a different computer
+    Try connecting USB directly to computer.
+    Try a different computer.
     As always, check the log.
  
 Mac crashes / resets unexpectedly or when USB is plugged in
@@ -217,7 +221,8 @@ BANK_A.UF2 OR BANK_B.UF2 are 0 bytes in size
     Please try again, and consult the log if issues continue.
  
 BANK_CUR.UF2 is always 16MB in size
-	Due to limitations in how the USB mass storage works, it is not possible to read out anything but the full bank.
+	This is expected. Due to limitations in how the USB mass storage works,
+	it is not possible to read out anything but the full bank using BANK_CUR
 	
 Feel free to reach out to me on github or 68kmla with log files if you continue to have issues.
 
@@ -268,7 +273,7 @@ Pin 4: +5V Power
 *****************************************************
 * UART TX/RX pins are 3V logic. They are NOT 5V tolerant!!! 
 * DO NOT connect +5V or 5V logic to TX or RX! You WILL damage your SIMM.
-* A level converter (MAX3232) is required to connect to Macintosh.
+* A level converter (MAX3232) @ 3V is required to connect to Macintosh.
 *
 * I am sorry for providing +5V power and not +3.3V :(
 *****************************************************
