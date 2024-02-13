@@ -284,15 +284,15 @@ Pin 4: +5V Power
 
 USB pads are exposed on the bottom of the module so you may solder a USB cable (at your own risk!)
 
-On the bottom of the Pico module: D+ is nearest to the +sign
-On the bottom of the Pico module: D- is nearest to the -sign
+On the bottom of the Pico module: D+ is nearest to the -sign
+On the bottom of the Pico module: D- is nearest to the +sign
 +5V is immediately next to the +, over the PWRIN label
 GND is immediately next to the -, over the PWRIN label
 
 _____________________________________________________________
           \        _______    _______        /       
            \      |       |  |       |      /            ____  
-            \     |   D+  |  |   D-  |     /            /
+            \     |   D-  |  |   D+  |     /            /
              \    |_______|  |_______|    /            /
               \__________________________/            /
                     ______    ______                 (    

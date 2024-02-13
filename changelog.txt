@@ -4,3 +4,4 @@
 1.0.0.105: fix flash sanity check function
 1.0.0.112: add LED activity indication for USB->Serial
 1.0.0.115: retain image signatures and echo them to console
+1.0.0.116: correct USB polarity in Readme
