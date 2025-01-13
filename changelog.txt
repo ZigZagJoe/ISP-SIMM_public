@@ -5,3 +5,4 @@
 1.0.0.112: add LED activity indication for USB->Serial
 1.0.0.115: retain image signatures and echo them to console
 1.0.0.116: correct USB polarity in Readme
+1.0.0.120: correctly handle 0x7F backspace, power LED of pico is always-on, SIMM LED tracks host power state
