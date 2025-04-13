@@ -6,3 +6,4 @@
 1.0.0.115: retain image signatures and echo them to console
 1.0.0.116: correct USB polarity in Readme
 1.0.0.120: correctly handle 0x7F backspace, power LED of pico is always-on, SIMM LED tracks host power state
+1.0.0.120: add SERIAL.LOG in drive and serlog command to print a 4kB serial log buffer. useful if USB serial disconnects
